@@ -17,8 +17,8 @@ int main(void)
 
     while(1)
     {
-        // GPIOA_ODR ^= (1 << 0);   // đảo trạng thái LED
-        //
-        // for(int i=0;i<500000;i++); // delay
+        GPIOA_ODR ^= (1 << 0);   // đảo trạng thái LED
+
+        for(int i=0;i<500000;i++); // delay
     }
 }

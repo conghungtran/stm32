@@ -7,7 +7,7 @@
 
 .section .isr_vector
 .word _estack
-.word _start
+.word _start + 1  /* THUMB bit required for Cortex-M3 reset vector */
 
 .section .text
 _start:
