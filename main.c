@@ -3,7 +3,7 @@
 #define GPIOA_CRL   (*(volatile unsigned int*)0x40010800)
 #define GPIOA_ODR   (*(volatile unsigned int*)0x4001080C)
 
-
+#define GPIOA_IDR   (*(volatile unsigned int*)0x40010808)
 int main(void)
 {
     // Enable clock
@@ -12,13 +12,19 @@ int main(void)
     GPIOA_CRL &= ~(0xF << 0);
     GPIOA_CRL |=  (0x2 << 0);
 
+    GPIOA_CRL &= ~(0xF << 8);
+    GPIOA_CRL |=  (0x8 << 8);
 
-    GPIOA_ODR |= (1 << 0);
+
+    GPIOA_ODR |= (1 << 2);
 
     while(1)
     {
-        GPIOA_ODR ^= (1 << 0);   // đảo trạng thái LED
+        if (GPIOA_IDR & (1 << 2)) {
+            GPIOA_ODR |= (1 << 0);
+        } else {
+            GPIOA_ODR &= ~(1 << 0);
+        }
 
-        for(int i=0;i<500000;i++); // delay
     }
 }
