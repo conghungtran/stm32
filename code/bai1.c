@@ -5,8 +5,6 @@
 
 #define GPIOA_IDR   (*(volatile unsigned int*)0x40010808)
 
-
-
 int main(void)
 {
     // Enable clock
